@@ -10,7 +10,7 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
-            int whiteStartSpace = 7;
+            int whiteStartSpace = 6;
             int blackStartSpace = 1;
             Square currentSquare = board.FindPiece(this);
             List<Square> moves = new List<Square>();
