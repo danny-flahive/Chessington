@@ -12,19 +12,21 @@ namespace Chessington.GameEngine.Pieces
         {
             Square currentSquare = board.FindPiece(this);
             List<Square> moves = new List<Square>();
-            if (this.Player == Player.Black)
+            int row = currentSquare.Row;
+            int col = currentSquare.Col;
+            if (this.Player == Player.Black && board.GetPiece(Square.At(row + 1, col)) == null)
             {
-                moves.Add(Square.At((currentSquare.Row + 1), currentSquare.Col));
-                if (!this.Moved)
+                moves.Add(Square.At(row + 1, col));
+                if (!this.Moved && board.GetPiece(Square.At(row + 2, col)) == null)
                 {
-                    moves.Add(Square.At(currentSquare.Row + 2, currentSquare.Col));
+                    moves.Add(Square.At(row + 2, col));
                 }
-            } else
+            } else if (this.Player == Player.White && board.GetPiece(Square.At(row - 1, col)) == null)
             {
-                moves.Add(Square.At((currentSquare.Row - 1), currentSquare.Col));
-                if (!this.Moved)
+                moves.Add(Square.At(row - 1, col));
+                if (!this.Moved && board.GetPiece(Square.At(row - 2, col)) == null)
                 {
-                    moves.Add(Square.At(currentSquare.Row - 2, currentSquare.Col));
+                    moves.Add(Square.At(row - 2, col));
                 }
             }
             return moves;

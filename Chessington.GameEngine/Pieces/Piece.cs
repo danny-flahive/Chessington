@@ -77,8 +77,5 @@ namespace Chessington.GameEngine.Pieces
             }
             return moves;
         }
-
-        //GetLateralMoves
-        //GetDiagonalMoves
     }
 }
