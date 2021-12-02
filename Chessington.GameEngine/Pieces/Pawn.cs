@@ -14,17 +14,17 @@ namespace Chessington.GameEngine.Pieces
             List<Square> moves = new List<Square>();
             int row = currentSquare.Row;
             int col = currentSquare.Col;
-            if (this.Player == Player.Black && board.GetPiece(Square.At(row + 1, col)) == null)
+            if (this.Player == Player.Black && row + 1 < 8 && board.GetPiece(Square.At(row + 1, col)) == null)
             {
                 moves.Add(Square.At(row + 1, col));
-                if (!this.Moved && board.GetPiece(Square.At(row + 2, col)) == null)
+                if (!this.Moved && row + 2 < 8 && board.GetPiece(Square.At(row + 2, col)) == null)
                 {
                     moves.Add(Square.At(row + 2, col));
                 }
-            } else if (this.Player == Player.White && board.GetPiece(Square.At(row - 1, col)) == null)
+            } else if (this.Player == Player.White && row - 1 >= 0 && board.GetPiece(Square.At(row - 1, col)) == null)
             {
                 moves.Add(Square.At(row - 1, col));
-                if (!this.Moved && board.GetPiece(Square.At(row - 2, col)) == null)
+                if (!this.Moved && row - 2 >= 0 && board.GetPiece(Square.At(row - 2, col)) == null)
                 {
                     moves.Add(Square.At(row - 2, col));
                 }

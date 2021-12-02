@@ -14,16 +14,38 @@ namespace Chessington.GameEngine.Pieces
             Square currentSquare = board.FindPiece(this);
             int row = currentSquare.Row;
             int col = currentSquare.Col;
-
-            moves.Add(Square.At(row + 1, col + 1));
-            moves.Add(Square.At(row + 1, col));
-            moves.Add(Square.At(row + 1, col - 1));
-            moves.Add(Square.At(row, col + 1));
-            moves.Add(Square.At(row, col - 1));
-            moves.Add(Square.At(row - 1, col + 1));
-            moves.Add(Square.At(row - 1, col));
-            moves.Add(Square.At(row - 1, col - 1));
-
+            if (row + 1 < 8)
+            {
+                moves.Add(Square.At(row + 1, col));
+                if (col + 1 < 8)
+                {
+                    moves.Add(Square.At(row + 1, col + 1));
+                }
+                if (col - 1 >= 0)
+                {
+                    moves.Add(Square.At(row + 1, col - 1));
+                }
+            }
+            if (row - 1 >= 0)
+            {
+                moves.Add(Square.At(row - 1, col));
+                if (col + 1 < 8)
+                {
+                    moves.Add(Square.At(row - 1, col + 1));
+                }
+                if (col - 1 >= 0)
+                {
+                    moves.Add(Square.At(row - 1, col - 1));
+                }
+            }
+            if (col - 1 >= 0)
+            {
+                moves.Add(Square.At(row, col - 1));
+            }
+            if (col + 1 < 8)
+            {
+                moves.Add(Square.At(row, col + 1));
+            }
             return moves;
         }
     }
