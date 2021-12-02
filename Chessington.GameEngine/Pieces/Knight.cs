@@ -10,6 +10,7 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
+            //TODO: Add offset array
             List<Square> moves = new List<Square>();
             Square currentSquare = board.FindPiece(this);
             int row = currentSquare.Row;

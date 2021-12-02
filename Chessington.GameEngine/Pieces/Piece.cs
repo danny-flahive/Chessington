@@ -32,66 +32,53 @@ namespace Chessington.GameEngine.Pieces
             Square currentSquare = board.FindPiece(this);
             int row = currentSquare.Row;
             int col = currentSquare.Col;
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row + i < 8; i++)
             {
-                if (!(row + i < 8 && board.GetPiece(Square.At(row + i, col)) == null))
-                {
-                    if (row + i < 8)
+                Piece piece = board.GetPiece(Square.At(row + i, col));
+                if (piece != null)
+                { 
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row + i, col));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row + i, col));
-                        }
+                        moves.Add(Square.At(row + i, col));
                     }
                     break;
                 }
                 moves.Add(Square.At(row + i, col));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row - i >= 0; i++)
             {
-                
-                if (!(row - i >= 0 && board.GetPiece(Square.At(row - i, col)) == null))
+                Piece piece = board.GetPiece(Square.At(row - i, col));
+                if (piece != null)
                 {
-                    if (row - i >= 0)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row - i, col));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row - i, col));
-                        }
+                        moves.Add(Square.At(row - i, col));
                     }
                     break;
                 }
                 moves.Add(Square.At(row - i, col));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; col + i < 8; i++)
             {
-                if (!(col + i < 8 && board.GetPiece(Square.At(row, col + i)) == null))
+                Piece piece = board.GetPiece(Square.At(row, col + i));
+                if (piece != null)
                 {
-                    if (col + i < 8)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row, col + i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row, col + i));
-                        }
+                        moves.Add(Square.At(row, col + i));
                     }
                     break;
                 }
                 moves.Add(Square.At(row, col + i));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; col - i >= 0; i++)
             {
-                if (!(col - i >= 0 && board.GetPiece(Square.At(row, col - i)) == null))
+                Piece piece = board.GetPiece(Square.At(row, col - i));
+                if (piece != null)
                 {
-                    if (col - i >= 0)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row, col - i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row, col - i));
-                        }
+                        moves.Add(Square.At(row, col - i));
                     }
                     break;
                 }
@@ -108,79 +95,65 @@ namespace Chessington.GameEngine.Pieces
             int row = currentSquare.Row;
             int col = currentSquare.Col;
 
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row - i >= 0 && col - i >= 0; i++)      //Move to upper left
             {
-                if (!(row - i >= 0 && col - i >= 0 && board.GetPiece(Square.At(row - i, col - i)) == null))
+                Piece piece = board.GetPiece(Square.At(row - i, col - i));
+                if (piece != null)
                 {
-                    if (row - i >= 0 && col - i >= 0)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row - i, col - i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row - i, col - i));
-                        }
+                        moves.Add(Square.At(row - i, col - i));
                     }
                     break;
                 }
-                moves.Add(Square.At(row - i, col - i));     //Move to upper left
+                moves.Add(Square.At(row - i, col - i));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row - i >= 0 && col + i < 8; i++)       //Move to upper right
             {
-                if (!(row - i >= 0 && col + i < 8 && board.GetPiece(Square.At(row - i, col + i)) == null))
-                {
-                    if (row - i >= 0 && col + i < 8)
+                Piece piece = board.GetPiece(Square.At(row - i, col + i));
+                if (piece != null)
+                { 
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row - i, col + i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row - i, col + i));
-                        }
+                        moves.Add(Square.At(row - i, col + i));
                     }
                     break;
                 }
-                moves.Add(Square.At(row - i, col + i));     //Move to upper right
+                moves.Add(Square.At(row - i, col + i));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row + i < 8 && col - i >= 0; i++)       //Move to lower left
             {
-                if (!(row + i < 8 && col - i >= 0 && board.GetPiece(Square.At(row + i, col - i)) == null))
+                Piece piece = board.GetPiece(Square.At(row + i, col - i));
+                if (piece != null)
                 {
-                    if (row + i < 8 && col - i >= 0)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row + i, col - i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row + i, col - i));
-                        }
+                        moves.Add(Square.At(row + i, col - i));
                     }
                     break;
                 }
-                moves.Add(Square.At(row + i, col - i));     //Move to lower left
+                moves.Add(Square.At(row + i, col - i));
             }
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; row + i < 8 && col + i < 8; i++)        //Move to lower right
             {
-                if (!(row + i < 8 && col + i < 8 && board.GetPiece(Square.At(row + i, col + i)) == null))
+                Piece piece = board.GetPiece(Square.At(row + i, col + i));
+                if (piece != null)
                 {
-                    if (row + i < 8 && col + i < 8)
+                    if (piece.Player != this.Player)
                     {
-                        Piece piece = board.GetPiece(Square.At(row + i, col + i));
-                        if (piece != null && piece.Player != this.Player)
-                        {
-                            moves.Add(Square.At(row + i, col + i));
-                        }
+                        moves.Add(Square.At(row + i, col + i));
                     }
                     break;
                 }
-                moves.Add(Square.At(row + i, col + i));     //Move to lower right
+                moves.Add(Square.At(row + i, col + i));
             }
-
             return moves;
         }
 
         public bool ValidMoveSpace(Board board, Square square)
         {
+            //TODO: Add check that square coordinates are within the board
             return board.GetPiece(square) == null || board.GetPiece(square).Player != this.Player;
         }
-
-        //TODO: Add in a "valid piece" method here which covers the board getpiece == null or different colour
     }
 }

@@ -8,6 +8,10 @@ namespace Chessington.GameEngine.Pieces
         public Pawn(Player player) 
             : base(player) { }
 
+        //TODO: Add promotion
+        //If a pawn hits the end row (opposite where you started) it turns into another piece
+        //User can choose any piece except king or pawn
+        //Most people choose queen - start by only promoting to queen, then consider taking in user input
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
             Square currentSquare = board.FindPiece(this);
