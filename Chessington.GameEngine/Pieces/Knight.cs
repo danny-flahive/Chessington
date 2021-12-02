@@ -57,7 +57,7 @@ namespace Chessington.GameEngine.Pieces
                         moves.Add(Square.At(row + 1, col + 2));
                     }
                 }
-                if (col - 1 > 0)
+                if (row - 1 > 0)
                 {
                     if (ValidMoveSpace(board, Square.At(row - 1, col + 2)))
                     {
@@ -74,7 +74,7 @@ namespace Chessington.GameEngine.Pieces
                         moves.Add(Square.At(row + 1, col - 2));
                     }
                 }
-                if (col - 1 > 0)
+                if (row - 1 > 0)
                 {
                     if (ValidMoveSpace(board, Square.At(row - 1, col - 2)))
                     {
