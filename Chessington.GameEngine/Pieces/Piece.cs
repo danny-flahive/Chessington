@@ -107,10 +107,35 @@ namespace Chessington.GameEngine.Pieces
             Square currentSquare = board.FindPiece(this);
             int row = currentSquare.Row;
             int col = currentSquare.Col;
+
+            //for (int i = 1; i < 8; i++)
+            //{
+            //    if (!(row + i < 8 && board.GetPiece(Square.At(row + i, col)) == null))
+            //    {
+            //        if (row + i < 8)
+            //        {
+            //            Piece piece = board.GetPiece(Square.At(row + i, col));
+            //            if (piece != null && piece.Player != this.Player)
+            //            {
+            //                moves.Add(Square.At(row + i, col));
+            //            }
+            //        }
+            //        break;
+            //    }
+            //    moves.Add(Square.At(row + i, col));
+            //}
             for (int i = 1; i < 8; i++)
             {
                 if (!(row - i >= 0 && col - i >= 0 && board.GetPiece(Square.At(row - i, col - i)) == null))
                 {
+                    if (row - i >= 0 && col - i >= 0)
+                    {
+                        Piece piece = board.GetPiece(Square.At(row - i, col - i));
+                        if (piece != null && piece.Player != this.Player)
+                        {
+                            moves.Add(Square.At(row - i, col - i));
+                        }
+                    }
                     break;
                 }
                 moves.Add(Square.At(row - i, col - i));     //Move to upper left
@@ -119,6 +144,14 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (!(row - i >= 0 && col + i < 8 && board.GetPiece(Square.At(row - i, col + i)) == null))
                 {
+                    if (row - i >= 0 && col + i < 8)
+                    {
+                        Piece piece = board.GetPiece(Square.At(row - i, col + i));
+                        if (piece != null && piece.Player != this.Player)
+                        {
+                            moves.Add(Square.At(row - i, col + i));
+                        }
+                    }
                     break;
                 }
                 moves.Add(Square.At(row - i, col + i));     //Move to upper right
@@ -127,6 +160,14 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (!(row + i < 8 && col - i >= 0 && board.GetPiece(Square.At(row + i, col - i)) == null))
                 {
+                    if (row + i < 8 && col - i >= 0)
+                    {
+                        Piece piece = board.GetPiece(Square.At(row + i, col - i));
+                        if (piece != null && piece.Player != this.Player)
+                        {
+                            moves.Add(Square.At(row + i, col - i));
+                        }
+                    }
                     break;
                 }
                 moves.Add(Square.At(row + i, col - i));     //Move to lower left
@@ -135,6 +176,14 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (!(row + i < 8 && col + i < 8 && board.GetPiece(Square.At(row + i, col + i)) == null))
                 {
+                    if (row + i < 8 && col + i < 8)
+                    {
+                        Piece piece = board.GetPiece(Square.At(row + i, col + i));
+                        if (piece != null && piece.Player != this.Player)
+                        {
+                            moves.Add(Square.At(row + i, col + i));
+                        }
+                    }
                     break;
                 }
                 moves.Add(Square.At(row + i, col + i));     //Move to lower right
