@@ -175,5 +175,12 @@ namespace Chessington.GameEngine.Pieces
 
             return moves;
         }
+
+        public bool ValidMoveSpace(Board board, Square square)
+        {
+            return board.GetPiece(square) == null || board.GetPiece(square).Player != this.Player;
+        }
+
+        //TODO: Add in a "valid piece" method here which covers the board getpiece == null or different colour
     }
 }

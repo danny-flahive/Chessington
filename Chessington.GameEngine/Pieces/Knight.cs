@@ -18,44 +18,68 @@ namespace Chessington.GameEngine.Pieces
             {
                 if (col + 1 < 8)
                 {
-                    moves.Add(Square.At(row + 2, col + 1));
+                    if(ValidMoveSpace(board, Square.At(row + 2, col + 1)))
+                    {
+                        moves.Add(Square.At(row + 2, col + 1));
+                    }
                 }
                 if (col - 1 > 0)
                 {
-                    moves.Add(Square.At(row + 2, col - 1));
+                    if (ValidMoveSpace(board, Square.At(row + 2, col - 1)))
+                    {
+                        moves.Add(Square.At(row + 2, col - 1));
+                    }
                 }
             }
             if (row - 2 >= 0)
             {
                 if (col + 1 < 8)
                 {
-                    moves.Add(Square.At(row - 2, col + 1));
+                    if (ValidMoveSpace(board, Square.At(row - 2, col + 1)))
+                    {
+                        moves.Add(Square.At(row - 2, col + 1));
+                    }
                 }
                 if (col - 1 > 0)
                 {
-                    moves.Add(Square.At(row - 2, col - 1));
+                    if (ValidMoveSpace(board, Square.At(row - 2, col - 1)))
+                    {
+                        moves.Add(Square.At(row - 2, col - 1));
+                    }
                 }
             }
             if (col + 2 < 8)
             {
                 if (row + 1 < 8)
                 {
-                    moves.Add(Square.At(row + 1, col + 2));
+                    if (ValidMoveSpace(board, Square.At(row + 1, col + 2)))
+                    {
+                        moves.Add(Square.At(row + 1, col + 2));
+                    }
                 }
                 if (col - 1 > 0)
                 {
-                    moves.Add(Square.At(row - 1, col + 2));
+                    if (ValidMoveSpace(board, Square.At(row - 1, col + 2)))
+                    {
+                        moves.Add(Square.At(row - 1, col + 2));
+                    }
                 }
             }
             if (col - 2 >= 0)
             {
                 if (row + 1 < 8)
                 {
-                    moves.Add(Square.At(row + 1, col - 2));
+                    if (ValidMoveSpace(board, Square.At(row + 1, col - 2)))
+                    {
+                        moves.Add(Square.At(row + 1, col - 2));
+                    }
                 }
                 if (col - 1 > 0)
                 {
-                    moves.Add(Square.At(row - 1, col - 2));
+                    if (ValidMoveSpace(board, Square.At(row - 1, col - 2)))
+                    {
+                        moves.Add(Square.At(row - 1, col - 2));
+                    }
                 }
             }
             return moves;
