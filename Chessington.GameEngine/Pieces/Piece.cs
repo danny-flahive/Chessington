@@ -30,19 +30,6 @@ namespace Chessington.GameEngine.Pieces
         {
             List<Square> moves = new List<Square>();
             Square currentSquare = board.FindPiece(this);
-            ////Prevent this from passing through pieces
-            //for (var i = 0; i < 8; i++)
-            //{
-            //    if (currentSquare.Row != i)
-            //    {
-            //        moves.Add(Square.At(i, currentSquare.Col));
-            //    }
-            //    if (currentSquare.Col != i)
-            //    {
-            //        moves.Add(Square.At(currentSquare.Row, i));
-            //    }
-            //}
-            //return moves;
             int row = currentSquare.Row;
             int col = currentSquare.Col;
             for (int i = 1; i < 8; i++)
@@ -90,29 +77,37 @@ namespace Chessington.GameEngine.Pieces
             int col = currentSquare.Col;
             for (int i = 1; i < 8; i++)
             {
-                if (row - i >= 0)
+                if (!(row - i >= 0 && col - i >= 0 && board.GetPiece(Square.At(row - i, col - i)) == null))
                 {
-                    if (col - i >= 0)
-                    {
-                        moves.Add(Square.At(row - i, col - i));     //Move to upper left
-                    }
-                    if (col + i <= 7)
-                    {
-                        moves.Add(Square.At(row - i, col + i));     //Move to upper right
-                    }
+                    break;
                 }
-                if (row + i <= 7)
-                {
-                    if (col - i >= 0)
-                    {
-                        moves.Add(Square.At(row + i, col - i));     //Move to lower left
-                    }
-                    if (col + i <= 7)
-                    {
-                        moves.Add(Square.At(row + i, col + i));     //Move to lower right
-                    }
-                }
+                moves.Add(Square.At(row - i, col - i));     //Move to upper left
             }
+            for (int i = 1; i < 8; i++)
+            {
+                if (!(row - i >= 0 && col + i < 8 && board.GetPiece(Square.At(row - i, col + i)) == null))
+                {
+                    break;
+                }
+                moves.Add(Square.At(row - i, col + i));     //Move to upper right
+            }
+            for (int i = 1; i < 8; i++)
+            {
+                if (!(row + i < 8 && col - i >= 0 && board.GetPiece(Square.At(row + i, col - i)) == null))
+                {
+                    break;
+                }
+                moves.Add(Square.At(row + i, col - i));     //Move to lower left
+            }
+            for (int i = 1; i < 8; i++)
+            {
+                if (!(row + i < 8 && col + i < 8 && board.GetPiece(Square.At(row + i, col + i)) == null))
+                {
+                    break;
+                }
+                moves.Add(Square.At(row + i, col + i));     //Move to lower right
+            }
+
             return moves;
         }
     }
