@@ -10,65 +10,26 @@ namespace Chessington.GameEngine.Pieces
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
-            //TODO: Add Offsets array
+            int[,] offsets = new int[,]
+            {
+                {1, 1},
+                {1, 0},
+                {1, -1},
+                {0, 1},
+                {0, -1},
+                {-1, -1},
+                {-1, 1},
+                {-1, 0}
+            };
             List<Square> moves = new List<Square>();
             Square currentSquare = board.FindPiece(this);
             int row = currentSquare.Row;
             int col = currentSquare.Col;
-            if (row + 1 < 8)
+            for (int i = 0; i < offsets.GetLength(0); i++)
             {
-                if (ValidMoveSpace(board, Square.At(row + 1, col)))
+                if (ValidMoveSpace(board, Square.At(row + offsets[i, 0], col + offsets[i, 1])))
                 {
-                    moves.Add(Square.At(row + 1, col));
-                }
-                if (col + 1 < 8)
-                {
-                    if (ValidMoveSpace(board, Square.At(row + 1, col + 1)))
-                    {
-                        moves.Add(Square.At(row + 1, col + 1));
-                    }
-                }
-                if (col - 1 >= 0)
-                {
-                    if (ValidMoveSpace(board, Square.At(row + 1, col - 1)))
-                    {
-                        moves.Add(Square.At(row + 1, col - 1));
-                    }
-                }
-            }
-            if (row - 1 >= 0)
-            {
-                if (ValidMoveSpace(board, Square.At(row - 1, col)))
-                {
-                    moves.Add(Square.At(row - 1, col));
-                }
-                if (col + 1 < 8)
-                {
-                    if (ValidMoveSpace(board, Square.At(row - 1, col + 1)))
-                    {
-                        moves.Add(Square.At(row - 1, col + 1));
-                    }
-                }
-                if (col - 1 >= 0)
-                {
-                    if (ValidMoveSpace(board, Square.At(row - 1, col - 1)))
-                    {
-                        moves.Add(Square.At(row - 1, col - 1));
-                    }
-                }
-            }
-            if (col - 1 >= 0)
-            {
-                if (ValidMoveSpace(board, Square.At(row, col - 1)))
-                {
-                    moves.Add(Square.At(row, col - 1));
-                }
-            }
-            if (col + 1 < 8)
-            {
-                if (ValidMoveSpace(board, Square.At(row, col + 1)))
-                {
-                    moves.Add(Square.At(row, col + 1));
+                    moves.Add(Square.At(row + offsets[i, 0], col + offsets[i, 1]));
                 }
             }
             return moves;

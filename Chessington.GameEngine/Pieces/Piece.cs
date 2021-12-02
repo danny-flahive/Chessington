@@ -152,8 +152,7 @@ namespace Chessington.GameEngine.Pieces
 
         public bool ValidMoveSpace(Board board, Square square)
         {
-            //TODO: Add check that square coordinates are within the board
-            return board.GetPiece(square) == null || board.GetPiece(square).Player != this.Player;
+            return (square.Row >= 0 && square.Row < 8 && square.Col >= 0 && square.Col < 8) && (board.GetPiece(square) == null || board.GetPiece(square).Player != this.Player);
         }
     }
 }
