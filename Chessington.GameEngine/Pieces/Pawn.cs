@@ -54,15 +54,6 @@ namespace Chessington.GameEngine.Pieces
                     moves.Add(Square.At(row - 1, col - 1));
                 }
             }
-
-            if (col + 1 < 8)
-            {
-                
-            }
-            if (col - 1 >= 0)
-            {
-
-            }
             return moves;
         }
     }

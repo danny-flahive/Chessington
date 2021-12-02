@@ -22,6 +22,17 @@ namespace Chessington.GameEngine.Pieces
             {
                 Moved = true;
             }
+            //Pawn promotion is handled here - could handle this elsewhere but this works for now
+            if (this.GetType() == typeof(Pawn))
+            {
+                if (this.Player == Player.Black && newSquare.Row == 7)
+                {
+                    board.AddPiece(newSquare, new Queen(this.Player));
+                } else if (this.Player == Player.White && newSquare.Row == 0)
+                {
+                    board.AddPiece(newSquare, new Queen(this.Player));
+                }
+            }
         }
 
         public IEnumerable<Square> GetLateralMovement(Board board)

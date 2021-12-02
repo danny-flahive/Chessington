@@ -201,5 +201,26 @@ namespace Chessington.GameEngine.Tests.Pieces
             moves.Should().NotContain(Square.At(6, 2));
             moves.Should().NotContain(Square.At(6, 4));
         }
+
+        [Test]
+        public void WhitePawns_PromoteAtBoardEnd()
+        {
+            Board board = new Board();
+            Pawn pawn = new Pawn(Player.White);
+            board.AddPiece(Square.At(1, 3), pawn);
+            pawn.MoveTo(board, Square.At(0, 3));
+            board.GetPiece(Square.At(0, 3)).Should().BeOfType<Queen>();
+        }
+
+        [Test]
+        public void BlackPawns_PromoteAtBoardEnd()
+        {
+            Board board = new Board(Player.Black);
+            Pawn pawn = new Pawn(Player.Black);
+
+            board.AddPiece(Square.At(6, 3), pawn);
+            pawn.MoveTo(board, Square.At(7, 3));
+            board.GetPiece(Square.At(7, 3)).Should().BeOfType<Queen>();
+        }
     }
 }
