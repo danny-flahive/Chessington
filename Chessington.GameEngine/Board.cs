@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Chessington.GameEngine.Pieces;
+using System.Linq;
 
 namespace Chessington.GameEngine
 {
@@ -38,6 +39,31 @@ namespace Chessington.GameEngine
                         return Square.At(row, col);
 
             throw new ArgumentException("The supplied piece is not on the board.", "piece");
+        }
+
+        public bool IsStalemate()
+        {
+            //Puts the burden on GetAvailableMoves to deal with check situations
+            bool whiteHasMoves = false;
+            bool blackHasMoves = false;
+            foreach (Piece piece in board)      //Check if white has any valid moves
+            {
+                if (piece != null && piece.Player == Player.White && piece.GetAvailableMoves(this).Count() > 0)
+                {
+                    whiteHasMoves = true;
+                    break;
+                }
+            }
+            
+            foreach (Piece piece in board)      //Check if black has any valid moves
+            {
+                if (piece != null && piece.Player == Player.Black && piece.GetAvailableMoves(this).Count() > 0)
+                {
+                    blackHasMoves = true;
+                    break;
+                }
+            }
+            return !(whiteHasMoves && blackHasMoves);       //If both white and black have possible moves, there is no stalemate
         }
 
         public void MovePiece(Square from, Square to)

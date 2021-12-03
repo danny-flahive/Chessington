@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualBasic;
 
 namespace Chessington.GameEngine.Pieces
 {
@@ -25,12 +27,33 @@ namespace Chessington.GameEngine.Pieces
             //Pawn promotion is handled here - could handle this elsewhere but this works for now
             if (this.GetType() == typeof(Pawn))
             {
-                if (this.Player == Player.Black && newSquare.Row == 7)
+                if ((this.Player == Player.Black && newSquare.Row == 7) || (this.Player == Player.White && newSquare.Row == 0))
                 {
-                    board.AddPiece(newSquare, new Queen(this.Player));
-                } else if (this.Player == Player.White && newSquare.Row == 0)
+                    Piece newPiece = GetUserPiece();
+                    board.AddPiece(newSquare, newPiece);
+                }
+            }
+        }
+
+        private Piece GetUserPiece()
+        {
+            string promptText = "Enter a piece to promote to: ";
+            while (true)
+            {
+                string choice = Interaction.InputBox(promptText, "Pawn Promotion", "Queen");
+                switch (choice.ToLower())
                 {
-                    board.AddPiece(newSquare, new Queen(this.Player));
+                    case "rook":
+                        return new Rook(this.Player);
+                    case "bishop":
+                        return new Bishop(this.Player);
+                    case "knight":
+                        return new Knight(this.Player);
+                    case "queen":
+                        return new Queen(this.Player);
+                    default:
+                        promptText = "Enter a valid piece to promote to: ";
+                        break;
                 }
             }
         }

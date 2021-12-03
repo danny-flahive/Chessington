@@ -217,7 +217,6 @@ namespace Chessington.GameEngine.Tests.Pieces
         {
             Board board = new Board(Player.Black);
             Pawn pawn = new Pawn(Player.Black);
-
             board.AddPiece(Square.At(6, 3), pawn);
             pawn.MoveTo(board, Square.At(7, 3));
             board.GetPiece(Square.At(7, 3)).Should().BeOfType<Queen>();
